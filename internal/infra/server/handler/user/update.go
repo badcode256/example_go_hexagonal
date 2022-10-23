@@ -8,20 +8,20 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func CreateHandler(userService service.UserService) gin.HandlerFunc {
+func UpdateHandler(userService service.UserService) gin.HandlerFunc {
 
 	return func(ctx *gin.Context) {
-		var req domain.IUser
+		var req domain.UUser
 		if err := ctx.BindJSON(&req); err != nil {
 			ctx.JSON(http.StatusBadRequest, &domain.Response{Message: "bad_request"})
 			return
 		}
-		err := userService.CreateUser(req)
+		err := userService.UpdateUser(req)
 		if err != nil {
 			ctx.JSON(http.StatusInternalServerError, &domain.Response{Message: err.Error()})
 			return
 		}
 
-		ctx.JSON(http.StatusCreated, gin.H{"message": "created"})
+		ctx.JSON(http.StatusOK, gin.H{"message": "updated"})
 	}
 }

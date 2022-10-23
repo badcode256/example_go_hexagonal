@@ -29,6 +29,9 @@ func New(ctx context.Context, host string, port uint, userService service.UserSe
 
 func (s *Server) routes() {
 	s.engine.POST("/user/create", user.CreateHandler(s.userService))
+	s.engine.POST("/user/update", user.UpdateHandler(s.userService))
+	s.engine.GET("/user/delete/:id", user.DeleteHandler(s.userService))
+	s.engine.GET("/user/list", user.ListHandler(s.userService))
 }
 
 func (s *Server) Run() error {

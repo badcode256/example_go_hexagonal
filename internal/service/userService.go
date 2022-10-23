@@ -18,3 +18,18 @@ func (s UserService) CreateUser(user domain.IUser) error {
 
 	return s.userRepository.CreateUser(user)
 }
+
+func (s UserService) UpdateUser(user domain.UUser) error {
+
+	return s.userRepository.UpdateUser(user)
+}
+
+func (s UserService) DeleteUser(id int64) error {
+
+	return s.userRepository.DeleteUser(id)
+}
+
+func (s UserService) ListUsers() (*[]domain.Users, error) {
+
+	return s.userRepository.ListUsers()
+}
